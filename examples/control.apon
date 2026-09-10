@@ -1,0 +1,28 @@
+let n = 5
+
+if n > 10:
+    print("big")
+elif n > 3:
+    print("medium")
+else:
+    print("small")
+
+let i = 0
+while i < 4:
+    print("while", i)
+    i = i + 1
+
+let nums = [10, 20, 30]
+push(nums, 40)
+print("list", nums)
+print("len", len(nums))
+print("first", nums[0])
+
+let person = {"name": "Apon", "age": 1}
+print("map", person)
+print("name field", person["name"])
+
+fn greet(who):
+    return "hello " + who
+
+print(greet("world"))

@@ -1,0 +1,51 @@
+# Apon written in Apon — tiny evaluator for arithmetic expressions.
+# This is the self-hosting seed: Apon source that Apon (via stage-0) executes.
+# Later stages grow this into the full lexer + parser + interpreter in Apon.
+
+fn is_digit(ch):
+    return ch >= "0" and ch <= "9"
+
+fn parse_number(text, i):
+    let start = i
+    let n = 0
+    while i < len(text) and is_digit(text[i]):
+        n = n * 10 + int(text[i])
+        i = i + 1
+    return [n, i]
+
+fn skip_space(text, i):
+    while i < len(text) and text[i] == " ":
+        i = i + 1
+    return i
+
+fn eval_expr(text):
+    let i = 0
+    let parsed = parse_number(text, skip_space(text, i))
+    let value = parsed[0]
+    i = parsed[1]
+    i = skip_space(text, i)
+    while i < len(text):
+        let op = text[i]
+        i = i + 1
+        i = skip_space(text, i)
+        parsed = parse_number(text, i)
+        let rhs = parsed[0]
+        i = parsed[1]
+        if op == "+":
+            value = value + rhs
+        elif op == "-":
+            value = value - rhs
+        elif op == "*":
+            value = value * rhs
+        elif op == "/":
+            value = value / rhs
+        else:
+            print("unknown op", op)
+            return nil
+        i = skip_space(text, i)
+    return value
+
+print("self-host demo evaluator")
+print("1 + 2 + 3 =", eval_expr("1 + 2 + 3"))
+print("10 - 4 =", eval_expr("10 - 4"))
+print("6 * 7 =", eval_expr("6 * 7"))

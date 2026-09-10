@@ -1,0 +1,25 @@
+# Apon standard library — core helpers written in Apon.
+
+fn map(items, f):
+    let out = []
+    for x in items:
+        push(out, f(x))
+    return out
+
+fn filter(items, f):
+    let out = []
+    for x in items:
+        if f(x):
+            push(out, x)
+    return out
+
+fn reduce(items, acc, f):
+    for x in items:
+        acc = f(acc, x)
+    return acc
+
+fn sum(items):
+    let total = 0
+    for x in items:
+        total = total + x
+    return total

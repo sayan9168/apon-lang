@@ -1,0 +1,6 @@
+# Apon — hello
+print("Namaskar. This is Apon.")
+print("Easy syntax. Own lexer. Own parser. Own runtime.")
+
+let name = "Sayan"
+print("Creator:", name)
